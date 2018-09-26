@@ -1,5 +1,7 @@
 ### .conkyrc
 
+![a Preview of the .conkyrc](https://i.redd.it/5asgnyk9jaa11.png ".conkyrc")
+
 You'll need both Fonts Installed. so Roboto and Material Icons, If you want the CryptoTicker's you'll need Cryptofont as well.
 
 Next you need to store the .conkyrc file in your home directory. Here's the link to my .conkyrc. You might need to modify it to suit your system.
