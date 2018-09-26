@@ -1,0 +1,98 @@
+conky.config = {
+    alignment = 'top_right',
+    background = false,
+    border_width = 10,
+    cpu_avg_samples = 2,
+	default_color = 'e5e5e5',
+    default_outline_color = 'white',
+    default_shade_color = 'white',
+    draw_borders = false,
+    draw_graph_borders = false,
+    draw_outline = false,
+    draw_shades = false,
+    use_xft = true,
+    font = 'Roboto:size=10',
+    gap_x = 40,
+    gap_y = 70,
+    minimum_height = 5,
+	minimum_width = 5,
+    maximum_width = 256,
+    net_avg_samples = 2,
+    no_buffers = true,
+    out_to_console = false,
+    out_to_stderr = false,
+    extra_newline = false,
+    own_window = true,
+    own_window_class = 'Conky',
+    own_window_type = 'desktop',
+    own_window_hints = 'below',
+    own_window_colour = '121212',
+    stippled_borders = 0,
+    update_interval = 1.0,
+    uppercase = false,
+    use_spacer = 'none',
+    show_graph_scale = false,
+    show_graph_range = false
+}
+
+conky.text = [[
+${font Material Icons:size=14}${font}${voffset -8}  ${font Roboto:bold:size=14}System${font}
+
+${offset 20}Model: Thinkpad x220
+${offset 20}OS: Xubuntu 18.04 LTS
+#${offset 20}Kernel: ${execi 3600 uname -r}
+#${offset 20}Uptime: $uptime_short
+
+# STORAGE
+${font Material Icons:size=14}${font}${voffset -8}  ${font Roboto:bold:size=14}Storage${font}
+
+${offset 20}${font Material Icons}${font}${voffset -3} /root/ ${fs_used_perc /}% ${alignr}${font Roboto Mono:size=8}(${fs_used /}/${fs_size /})${font}
+${offset 20}${fs_bar 4 /}
+
+${offset 20}${font Material Icons}${font}${voffset -3} /home/ ${fs_used_perc /home/}% ${alignr}${font Roboto Mono:size=8}(${fs_used /home/}/${fs_size /home/})${font}
+${offset 20}${fs_bar 4 /home/}
+
+# CPU + MEMORY
+${font Material Icons:size=14}${font}${voffset -8} ${font Roboto:bold:size=14}Stats${font}
+
+${offset 20}${font Material Icons}${font}${voffset -3} CPU $color $cpu% ${alignr}${font Roboto Mono:size=8}($freq MHz)${font}
+${offset 20}${cpubar}
+
+${offset 20}${font Material Icons}${font}${voffset -3} RAM $color $memperc% ${alignr}${font Roboto Mono:size=8}($mem/$memmax)${font}
+${offset 20}${membar}
+# NETWORK
+
+${if_existing /proc/net/route enp0s25}\
+${offset 20}${font Material Icons}${font}${voffset -3} Ethernet
+${offset 20}${font Material Icons}${font}${voffset -3} ${upspeed enp0s25} ${alignr}${downspeed enp0s25}${voffset 3}${font Material Icons}${font}
+${offset 20}${font Roboto Mono:size=8}(${totalup enp0s25})${alignr}(${totalup enp0s25})${font}
+${endif}\
+${if_existing /proc/net/route wlp3s0}\
+${offset 20}${font Material Icons}${font}${voffset -3} Wifi ${alignr}(${wireless_essid wlp3s0})
+${offset 20}${font Material Icons}${font}${voffset -3} ${upspeed wlp3s0} ${alignr}${downspeed wlp3s0}${voffset 3}${font Material Icons}${font}
+${offset 20}${font Roboto Mono:size=8}(${totalup wlp3s0})${alignr}(${totalup wlp3s0})${font}
+${endif}\
+
+#VPN
+${offset 20}${font Material Icons}${font}${voffset -3} VPN $alignr${if_up tun0}\
+${color #66BF60}${font Material Icons}${font}${voffset -3} Connected${color}${else}${color #FF6640}${font Material Icons}${font}${voffset -3} Disconnected${color}
+${endif}\
+
+
+# BATTERY
+${font Material Icons:size=14}${font}${voffset -8} ${font Roboto:bold:size=14}Power${font}
+
+${if_existing /sys/class/power_supply/AC/online 1}\
+${offset 20}${font Material Icons}${font}${voffset -3}$battery_percent% - Plugged in.
+${offset 20}${battery_bar}
+${endif}\
+${if_existing /sys/class/power_supply/AC/online 0}\
+${offset 20}${font Material Icons}${font}${voffset -3}Battery: $battery_percent% ($battery_time)
+${offset 20}${battery_bar}
+${endif}
+# CRYPTO
+${font Material Icons:size=14}${font}${voffset -8} ${font Roboto:bold:size=14}Crypto${font}
+
+${offset 20}${font cryptofont\-webfont}${font} £${execi 10 python /home/stevie/Scripts/conky/crypto/ltcPrice.py}${alignr}${font cryptofont\-webfont}${font} £${execi 10 python /home/stevie/Scripts/conky/crypto/xrpPrice.py}
+
+]]
