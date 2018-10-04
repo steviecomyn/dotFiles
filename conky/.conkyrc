@@ -46,10 +46,10 @@ ${offset 20}OS: Xubuntu 18.04 LTS
 # STORAGE
 ${font Material Icons:size=14}${font}${voffset -8}  ${font Roboto:bold:size=14}Storage${font}
 
-${offset 20}${font Material Icons}${font}${voffset -3} /root/ ${fs_used_perc /}% ${alignr}${font Roboto Mono:size=8}(${fs_used /}/${fs_size /})${font}
+${offset 20}${font Material Icons}${font}${voffset -3} /root/ ${fs_used_perc /}% ${alignr}${font Roboto Mono:size=8}(${fs_free /} Free)${font}
 ${offset 20}${fs_bar 4 /}
 
-${offset 20}${font Material Icons}${font}${voffset -3} /home/ ${fs_used_perc /home/}% ${alignr}${font Roboto Mono:size=8}(${fs_used /home/}/${fs_size /home/})${font}
+${offset 20}${font Material Icons}${font}${voffset -3} /home/ ${fs_used_perc /home/}% ${alignr}${font Roboto Mono:size=8}(${fs_free /home/} Free)${font}
 ${offset 20}${fs_bar 4 /home/}
 
 # CPU + MEMORY
